@@ -76,8 +76,9 @@ docker compose up -d
 - Coordenadas WGS84; teléfonos E.164; ids UUIDv7.
 - EF Core con migraciones; nada de SQL ad hoc en producción.
 - Logs estructurados (Serilog) cuando se añada.
-- Tests de parser con fixtures reales; integración con PostgreSQL cuando haya Docker.
-- Secretos en variables de entorno; nunca en el repo.
+- Tests de parser con fixtures reales; integración con PostgreSQL cuando haga falta.
+- Secretos en variables de entorno o user-secrets; nunca en el repo.
+- Frontend: HTML server-rendered y Bootstrap 5. **Sin jQuery.** HTMX/Alpine solo cuando una feature lo justifique; Leaflet es vanilla JS.
 
 ## Límites (no hacer sin pedirlo)
 
