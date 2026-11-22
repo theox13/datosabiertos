@@ -14,8 +14,8 @@ Siguiente: semana 2, ETL de Navarra + página `/fuentes`.
 ## Requisitos
 
 - .NET SDK 10 o superior (probado con SDK 11.0.100 compilando `net10.0`).
-- PostgreSQL 17+ o Docker con Compose.
-  - En esta máquina (A8_MAX) Docker **no está instalado**; el `docker compose` queda preparado para cuando se instale.
+- PostgreSQL 19 local en `localhost:5432` (instalado) o Docker con Compose.
+  - En A8_MAX hay PostgreSQL 19 local; Docker no está instalado y el `docker compose` queda preparado para despliegue.
 
 ## Arranque rápido
 
@@ -52,9 +52,17 @@ tests/
 
 ## Base de datos
 
-- PostgreSQL 17+.
+- PostgreSQL 19 local, base `datosabiertos`, usuario `datosabiertos`.
+- La cadena real vive en **user-secrets** (no se commitea):
+
+```powershell
+dotnet user-secrets set "ConnectionStrings:Default" "Host=localhost;Port=5432;Database=datosabiertos;Username=datosabiertos;Password=<tu-password>" --project src/DatosAbiertos.Web
+dotnet tool run dotnet-ef database update --project src/DatosAbiertos.Core --startup-project src/DatosAbiertos.Web
+```
+
 - Esquema inicial: `fuentes`, `provincias`, `municipios`, `farmacias`, `guardias`, `raw_payloads`, `ingest_runs`.
-- Migración: `InitialCreate` en `src/DatosAbiertos.Core/Data/Migrations`.
+- Migración aplicada: `20261122092121_InitialCreate` en `src/DatosAbiertos.Core/Data/Migrations`.
+- `appsettings.json` mantiene una cadena de ejemplo para tests y desarrollo sin secretos.
 
 ## CI
 

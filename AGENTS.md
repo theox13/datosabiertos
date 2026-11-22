@@ -18,8 +18,9 @@ Portal de datos públicos de España. Primer módulo: **farmacias de guardia**. 
 
 - **Semana 1 completada:** solución `DatosAbiertos.slnx`, `DatosAbiertos.Core`, `DatosAbiertos.Web`, `DatosAbiertos.Tests`, esquema PostgreSQL, Docker Compose, CI y `/health`.
 - **Siguiente:** semana 2 — ETL de Navarra + página `/fuentes`.
-- **Repo local:** `C:\PROYECTOS\datosabiertos`. Sin remoto configurado.
-- **Docker:** no instalado en A8_MAX; `docker compose` preparado pero no ejecutado.
+- **Repo local:** `C:\PROYECTOS\datosabiertos`; remoto `https://github.com/theox13/datosabiertos` (`origin`), rama `main`.
+- **Base de datos:** PostgreSQL 19 local en `localhost:5432`, base `datosabiertos`, usuario `datosabiertos`; cadena en **user-secrets** (no se commitea). Migración `InitialCreate` aplicada.
+- **Docker:** no instalado en A8_MAX; `docker compose` preparado para despliegue.
 
 ## Stack
 
@@ -59,6 +60,7 @@ dotnet build
 dotnet test
 
 dotnet tool restore
+dotnet user-secrets set "ConnectionStrings:Default" "Host=localhost;Port=5432;Database=datosabiertos;Username=datosabiertos;Password=<tu-password>" --project src/DatosAbiertos.Web
 dotnet tool run dotnet-ef migrations add <Nombre> --project src/DatosAbiertos.Core --startup-project src/DatosAbiertos.Web --output-dir Data/Migrations
 dotnet tool run dotnet-ef database update --project src/DatosAbiertos.Core --startup-project src/DatosAbiertos.Web
 
