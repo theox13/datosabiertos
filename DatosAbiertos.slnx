@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DatosAbiertos.Core/DatosAbiertos.Core.csproj" />
+    <Project Path="src/DatosAbiertos.Web/DatosAbiertos.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DatosAbiertos.Tests/DatosAbiertos.Tests.csproj" />
+  </Folder>
+</Solution>

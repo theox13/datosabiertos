@@ -1,0 +1,36 @@
+# Build
+bin/
+obj/
+artifacts/
+*.nupkg
+*.snupkg
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+
+# Tests
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+
+# Configuración local y secretos
+.env
+.env.*
+appsettings.*.local.json
+secrets.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

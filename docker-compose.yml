@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: datosabiertos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: datosabiertos
+      POSTGRES_USER: datosabiertos
+      POSTGRES_PASSWORD: datosabiertos_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - datosabiertos_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U datosabiertos -d datosabiertos"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  datosabiertos_pgdata:
